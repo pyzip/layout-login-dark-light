@@ -17,6 +17,10 @@
     <div class="container">
         <div class="logo">
             <i class="fab fa-youtube">  Pyzio</i>
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
 
 
@@ -36,44 +40,112 @@
             <h3>Create new account</h3>
 
             <div class="social-box">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
             </div>
             <p>or Sign Up with Email</p>
 
             <div class="input">
                 <div class="inputBox">
-                    <input type="text" name="" placeholder="Email">
+                    <input type="text" name="email" placeholder="Email Address" id="email">
+                </div>
+                <div class="inputBox password-container">
+                    <input type="password" name="password" placeholder="Password" id="password">
+                    <span class="password-toggle" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <div class="options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
                 <div class="inputBox">
-                    <input type="password" name="" placeholder="">
-                </div>
-                <div class="inputBox">
-                    <input type="submit" name="" value="Sign-in">
+                    <input type="submit" name="submit" value="Sign Up" id="submit-btn">
                 </div>
             </div>
-            <p class="login">Already Have account?<a href="#">Login</a></p>
+            <p class="login">Already Have account? <a href="#">Login</a></p>
 
         </div>
 
 
         <div class="media-box">
             <div class="left-box">
-                <div class="btn2"><i class="fab fa-facebook-f"></i><span>144,33 Follower</span></div>
-                <div class="btn2"><i class="fab fa-dribbble"></i><span>434,33 Follower</span></div>
+                <div class="btn2"><i class="fab fa-facebook-f"></i><span>144K Follower</span></div>
+                <div class="btn2"><i class="fab fa-dribbble"></i><span>434K Follower</span></div>
             </div>
         </div>
-
-
-
 
     </div>
 
 
 </section>
 
+<script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeStyle = document.getElementById('theme-style');
+    const themeIcon = themeToggle.querySelector('i');
+    let isDarkMode = true;
+
+    themeToggle.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        if (isDarkMode) {
+            themeStyle.href = 'css/styles.css';
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeStyle.href = 'css/styles-light.css';
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+
+    // Password visibility toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    
+    togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+
+    // Form validation
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        if (!email || !password) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Simple password validation
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            return;
+        }
+        
+        // Form is valid - in a real app, you would submit here
+        alert('Account created successfully!');
+    });
+</script>
 
 </body>
 </html>

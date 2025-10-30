@@ -10,7 +10,7 @@ body
     margin: 0;
     padding: 0;
     background: #0e0e0e;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
 ::-webkit-input-placeholder
@@ -34,11 +34,39 @@ section
     position: absolute;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: #0e0e0e;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: -2px -2px 6px rgba(255,255,255,0.05),
+                2px 2px 6px rgba(0,0,0,0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ff73;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+}
+
 section .container .logo
 {
     position: relative;
     margin-left: 69px;
     top: 65px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 section .container .logo
 {
@@ -93,7 +121,7 @@ section .container .logo:after
     font-size: 36px;
     letter-spacing: 0.03em;
     line-height: 55px;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     
 }
 .container .text-area p
@@ -102,7 +130,7 @@ section .container .logo:after
     font-size: 18px;
     line-height: 25px;
     color: #8e8e8e;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -117,7 +145,7 @@ section .container .logo:after
     border-radius: 12px;
     padding: 25px 60px;
     font-weight: 600;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     transition: all 0.1s ease;
     text-decoration: none;
@@ -175,7 +203,7 @@ section .form
 {
     margin-bottom: 13px;
     color: rgb(0,255,115);
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 25px;
     letter-spacing: 0.03em;
     text-align: center;
@@ -233,6 +261,20 @@ section .form
     color: #616161;
 }
 
+/* Password container with toggle */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    color: #7e7e7e;
+}
+
 .container .form .input .inputBox input
 {
     width: 80%;
@@ -257,6 +299,72 @@ section .form
 .container .form .input .inputBox
 {
     margin-top: 20px;
+    position: relative;
+}
+
+/* Custom checkbox styling */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 15px auto 0;
+    padding: 0 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #8e8e8e;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    background-color: #0e0e0e;
+    border-radius: 4px;
+    margin-right: 8px;
+    box-shadow: inset -3px -3px 6px rgba(255,255,255,0.05),
+                inset 3px 3px 6px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #00ff73;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #0e0e0e;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password {
+    text-decoration: none;
+    color: #00ff73;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }
 
 .form .input .inputBox input[type="submit"]
@@ -268,10 +376,20 @@ section .form
     cursor: pointer;
     letter-spacing: 0.1em;
     border-radius: 12px;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     box-shadow: -2px -2px 6px rgba(255,255,255,0.05),
                2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.form .input .inputBox input[type="submit"]:hover
+{
+    color: #00ff73;
+    background: #0e0e0e;
+    box-shadow: -2px -2px 6px rgba(255,255,255,0.05),
+               2px 2px 6px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
 }
 
 .form .input .inputBox input[type="submit"]:active
@@ -279,6 +397,7 @@ section .form
     color:#00ff73;
     background: #0e0e0e;
     margin-top: 10px;
+    transform: translateY(0);
 }
 
 .container .form .logo
@@ -295,11 +414,14 @@ section .form
     text-decoration: none;
     margin-left: 10px;
     font-weight: 600;
-    font-family: 'open sans',sans-serif;
-    color: #ff0047;
-    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    color: #00ff73;
+    font-size: 16px;
 }
 
+.login a:hover {
+    text-decoration: underline;
+}
 
 section .container .media-box
 {
