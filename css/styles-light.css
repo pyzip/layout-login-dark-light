@@ -10,7 +10,7 @@ body
     margin: 0;
     padding: 0;
     background: #f8f8f8;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
 ::-webkit-input-placeholder
@@ -34,11 +34,39 @@ section
     position: absolute;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: #f8f8f8;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: -2px -2px 6px rgb(249, 249, 249),
+                2px 2px 6px rgb(209, 209, 209);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1900b4;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+}
+
 section .container .logo
 {
     position: relative;
     margin-left: 69px;
     top: 65px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 section .container .logo
 {
@@ -93,7 +121,7 @@ section .container .logo:after
     font-size: 36px;
     letter-spacing: 0.03em;
     line-height: 55px;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     
 }
 .container .text-area p
@@ -102,7 +130,7 @@ section .container .logo:after
     font-size: 18px;
     line-height: 25px;
     color: #8e8e8e;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -117,7 +145,7 @@ section .container .logo:after
     border-radius: 12px;
     padding: 25px 60px;
     font-weight: 600;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     transition: all 0.1s ease;
     text-decoration: none;
@@ -175,7 +203,7 @@ section .form
 {
     margin-bottom: 13px;
     color: #1900b4;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 25px;
     letter-spacing: 0.03em;
     text-align: center;
@@ -233,6 +261,20 @@ section .form
     color: #616161;
 }
 
+/* Password container with toggle */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    color: #cbcbcb;
+}
+
 .container .form .input .inputBox input
 {
     width: 80%;
@@ -257,6 +299,72 @@ section .form
 .container .form .input .inputBox
 {
     margin-top: 20px;
+    position: relative;
+}
+
+/* Custom checkbox styling */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 15px auto 0;
+    padding: 0 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #616161;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    margin-right: 8px;
+    box-shadow: inset -2px -2px 6px rgb(249,249,249),
+                inset 2px 2px 6px rgb(209,209,209);
+    position: relative;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #1900b4;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password {
+    text-decoration: none;
+    color: #1900b4;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }
 
 .form .input .inputBox input[type="submit"]
@@ -268,10 +376,20 @@ section .form
     cursor: pointer;
     letter-spacing: 0.1em;
     border-radius: 12px;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     box-shadow: -2px -2px 6px rgb(249,249,249),
                  2px 2px 6px rgb(209,209,209);
+    transition: all 0.3s ease;
+}
+
+.form .input .inputBox input[type="submit"]:hover
+{
+    color: #1900b4;
+    background: #f8f8f8;
+    box-shadow: 4px 4px 6px 0 rgba(0,0,0,0.1),
+                 -4px 4px 6px #fff;
+    transform: translateY(-2px);
 }
 
 .form .input .inputBox input[type="submit"]:active
@@ -279,6 +397,7 @@ section .form
     color:#1900b4;
     background: #f8f8f8;
     margin-top: 10px;
+    transform: translateY(0);
 }
 
 .container .form .logo
@@ -295,11 +414,14 @@ section .form
     text-decoration: none;
     margin-left: 10px;
     font-weight: bold;
-    font-family: 'open sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #1900b4;
-    font-size: 24px;
+    font-size: 16px;
 }
 
+.login a:hover {
+    text-decoration: underline;
+}
 
 section .container .media-box
 {
@@ -353,7 +475,7 @@ section .container .media-box
     display: inline-block;
     vertical-align: middle;
     font-size: 16px;
-    color: #ddd;
+    color: #616161;
     margin-top: -87px;
 }
 

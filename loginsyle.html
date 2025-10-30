@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login</title>
+    <title>Enhanced Login</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/Fontawesome.css">
     <link rel="stylesheet" href="css/styles-light.css">
+    <link rel="stylesheet" href="css/styles.css" id="theme-style">
 
 </head>
 <body>
@@ -17,44 +18,56 @@
             
            <div class="logo">
             <i class="fab fa-youtube"> Pyzip </i>
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
           </div> 
 
     <!------------TEXT Area ------------>  
             <div class="text-area">
                 
-                  <h2>Help to Create a Professorial</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
-                             accumsan</p>
-                  <a href="#" class="text-btn">Get Started</a>
+                  <h2>Welcome Back</h2>
+                  <p>Sign in to access your personalized dashboard and continue your journey with us.</p>
+                  <a href="#" class="text-btn">Learn More</a>
             </div>
     <!---------END Text AREA ----------->
           
      <!--------- Form ----------->
             <div class="form">
-                <h3>Create new account</h3>
+                <h3>Sign In to Your Account</h3>
                 <div class="social-box">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
-                <p>or Sign Up with Email</p>
+                <p>or use your email account</p>
 
                  <div class="input">
                    <div class="inputBox">
-                     <input type="text" name="" placeholder="Email">
+                     <input type="text" name="email" placeholder="Email Address" id="email">
+                   </div>
+                   <div class="inputBox password-container">
+                     <input type="password" name="password" placeholder="Password" id="password">
+                     <span class="password-toggle" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                     </span>
+                   </div>
+                   <div class="options">
+                     <label class="checkbox-container">
+                       <input type="checkbox" id="remember">
+                       <span class="checkmark"></span>
+                       Remember me
+                     </label>
+                     <a href="#" class="forgot-password">Forgot Password?</a>
                    </div>
                    <div class="inputBox">
-                     <input type="password" name="" placeholder="">
-                   </div>
-                   <div class="inputBox">
-                     <input type="submit" name="" value="Sign In">
+                     <input type="submit" name="submit" value="Sign In" id="submit-btn">
                    </div>
                  </div>
 
-                <p class="login">Already Have account?<a href="#">Login </a></p>
+                <p class="login">Don't have an account? <a href="#">Sign Up</a></p>
             </div>
     <!---------End Form ----------->
 
@@ -62,49 +75,73 @@
               <div class="media-box">
                 <!---left-->
                 <div class="left-box">
-                  <div class="btn2"><i class="fab fa-facebook-f"></i><span>144,00 Follower</span></div>
-                  <div class="btn2"><i class="fab fa-dribbble"></i><span>234,00 Follower</span></div>
+                  <div class="btn2"><i class="fab fa-facebook-f"></i><span>144K Follower</span></div>
+                  <div class="btn2"><i class="fab fa-dribbble"></i><span>234K Follower</span></div>
                 </div>    
-
-                 <!-----right---->
-                 <!---  <div class="right-box">
-                    <a href="#"><i class="fab fa-facebook-messenger"></i></a>
-                    <a href="#"><i class="fab fa-dribbble"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-skype"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-
-               </div>------->
-
-                 <!----- <div class="box1"></div>
-                 <div class="box2"></div>
-                 <div class="box3"></div>
-                 <div class="box4"></div>
-                     ----->
               </div>
     <!---------End Box media---------------->
         </div>
   </section>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeStyle = document.getElementById('theme-style');
+    const themeIcon = themeToggle.querySelector('i');
+    let isDarkMode = false;
+
+    themeToggle.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        if (isDarkMode) {
+            themeStyle.href = 'css/styles.css';
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeStyle.href = 'css/styles-light.css';
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+
+    // Password visibility toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    
+    togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+
+    // Form validation
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        if (!email || !password) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Simple password validation
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            return;
+        }
+        
+        // Form is valid - in a real app, you would submit here
+        alert('Login successful!');
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-<!----
-.container .form .input .inputBox input[type="submit"] {
-    width: 55%;
-  margin-top: 10px;
-  background: #1900b4;
-  color: #f8f8f8;
-    box-shadow:  -2px -2px 6px rgb(249, 249, 249),
-                 2px 2px 6px rgb(209, 209, 209);
-}
-
-.container .form .input .inputBox input[type="submit"]:hover
-{
-    color: #1900b4;
-    background: #f8f8f8;
-        box-shadow: -5px -5px 10px rgb(255,255,255), 5px 5px 10px rgba(230, 225, 225, 0.96);
-
-}*/---->
